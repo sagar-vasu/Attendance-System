@@ -1,0 +1,81 @@
+/* clendar */
+
+* {
+    box-sizing: border-box;
+  }
+  ul {
+    list-style-type: none;
+  }
+  
+  #clendar {
+    margin: 30px 160px; /* Same as the width of the sidenav */
+  }
+  
+  .month {
+    padding: 70px 25px;
+    width: 100%;
+    background: #3F51B5;
+    text-align: center;
+    color: white
+  }
+  
+  .month ul {
+    margin: 0;
+    padding: 0;
+    margin-top: 30px;
+  }
+  
+  .month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+  
+  .month .prev {
+    float: left;
+    padding-top: 10px;
+  }
+  
+  .month .next {
+    float: right;
+    padding-top: 10px;
+  }
+  
+  .weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color: #ddd;
+  }
+  
+  .weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+  }
+  
+  .days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+  }
+  
+  .days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.7%;
+    text-align: center;
+    font-size: 12px;
+    padding: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #777;
+    height: 50px;
+  }
+  
+  .days li .active {
+    padding: 5px;
+    background: #3F51B5;
+    color: white !important;
+  }

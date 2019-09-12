@@ -1,0 +1,41 @@
+.header h1{
+    background-color: dodgerblue;
+    text-align: center;
+    padding: 5px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+
+
+.body h1{
+    background-color: lightcyan;
+    text-align: center;
+    padding: 5px;
+    color: rebeccapurple;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 5em;
+}
+
+
+
+
+.footer h1{
+    background-color: black;
+    text-align: center;
+    padding: 5px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 5em;
+}
+
+.todo{
+    text-align: center;
+    border: 1px solid red;
+}
+
+.todo input {
+    padding: 10px;
+    width: 340px
+}
