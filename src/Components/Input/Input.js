@@ -1,8 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { MDBInput,MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem  } from "mdbreact";
-
+import { MDBInput } from "mdbreact";
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -20,6 +23,15 @@ const useStyles = makeStyles(theme => ({
   menu: {
     width: 200,
   },
+
+  button: {
+    display: 'block',
+    marginTop: theme.spacing(2),
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 220,
+  },  
 }));
 
 function OutlinedTextFields(props) {
@@ -49,25 +61,59 @@ function OutlinedTextFields(props) {
 
 const InputPage = (props) => {
   return (
-    <MDBInput onChange={props.onChange} value={props.value} hint={props.label} type={props.type} />
-
+    <MDBInput onChange={props.onChange} disabled={props.disabled} value={props.value} label={props.label} hint={props.hint} type={props.type} />
   );
 }
 
 
 
 
+
+
+
 const DropdownPage = (props) => {
+  const classes = useStyles();
+  const [age, setAge] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+
+  
+  function handleChange(event) {
+    setAge(event.target.value);
+    props.onChange(event)
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
+  function handleOpen() {
+    setOpen(true);
+  }
   return (
-    <MDBDropdown>
-      <MDBDropdownToggle caret color="primary">
-        {props.title}
-      </MDBDropdownToggle>
-      <MDBDropdownMenu basic>
-        <MDBDropdownItem header>{props.intro}</MDBDropdownItem>
-        <MDBDropdownItem>{props.val}</MDBDropdownItem>
-      </MDBDropdownMenu>
-    </MDBDropdown>
+    <form>
+    <FormControl className={classes.formControl}>
+    <InputLabel htmlFor="demo-controlled-open-select">{props.label}</InputLabel>
+    <Select
+      open={open}
+      onClose={handleClose}
+      onOpen={handleOpen}
+      value={age}
+      onChange={handleChange}
+      inputProps={{
+        name: 'age',
+        id: 'demo-controlled-open-select',
+      }}
+      disabled={props.disabled}
+    >
+      {
+        props.list.map((val,ind)=>{
+          return <MenuItem  key={ind} value={val} >{val}</MenuItem>
+
+        }) 
+      }
+    </Select>
+  </FormControl>
+</form>
   );
 }
 
@@ -78,6 +124,7 @@ const DropdownPage = (props) => {
 export {
   OutlinedTextFields,
   InputPage,
-  DropdownPage
+  DropdownPage,
+
 
 }

@@ -56,9 +56,8 @@ export default class Clendar extends React.Component {
                         </ul>
                         <ul className="days">
                             {allDays && allDays.map((val, ind) => {
-                                return currentDate === val ? <li key={ind} style={{ backgroundColor: '#3F51B5', color: 'white' }} >{val}</li> : <li key={ind}>{val}</li>
+                                return currentDate === val ? <li key={ind} style={{ backgroundColor: '#212121', color: 'white' }} >{val}</li> : <li key={ind}>{val}</li>
                             })}
-
                         </ul>
                     </div>
 

@@ -9,8 +9,10 @@
     "mdbreact": "^4.19.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-excel-renderer": "^1.1.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1"
+    "react-scripts": "3.1.1",
+    "xlsx": "^0.15.1"
   },
   "scripts": {
     "start": "react-scripts start",

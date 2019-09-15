@@ -21,7 +21,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonIcon from '@material-ui/icons/Person';
 import ClassIcon from '@material-ui/icons/Class';
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { Link } from 'react-router-dom'
 
 const drawerWidth = 240;
 
@@ -103,6 +103,7 @@ export default function MiniDrawer(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        style={{ backgroundColor: '#212121' }}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -121,7 +122,7 @@ export default function MiniDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-           {props.name}
+            {props.name}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -148,52 +149,48 @@ export default function MiniDrawer(props) {
         <List>
 
           {/* Dashboard */}
+          <Link to='/home'>
+            <ListItem button>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary='Dashboard' />
+            </ListItem>
+          </Link>
 
-          <ListItem button>
-            <ListItemIcon> 
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary='Dashboard' />
-          </ListItem>
 
-        
           {/* Attendance */}
-
+          <Link to='/attendance'>
           <ListItem button>
-            <ListItemIcon> 
-              <PersonIcon/>
+            <ListItemIcon>
+              <PersonIcon />
             </ListItemIcon>
             <ListItemText primary='Attendance' />
           </ListItem>
 
+          </Link>
+
+          
 
           {/* Add Class */}
+          <Link to='/add-class'>
+            <ListItem button>
+              <ListItemIcon>
+                <ClassIcon />
+              </ListItemIcon>
+              <ListItemText primary='Add Class' />
+            </ListItem>
+          </Link>
 
-          <ListItem button>
-            <ListItemIcon> 
-              <ClassIcon />
-            </ListItemIcon>
-            <ListItemText primary='Add Class' />
-          </ListItem>
-
-           {/* Edit Class */}
-
-           <ListItem button>
-            <ListItemIcon> 
-              <EditIcon />
-            </ListItemIcon>
-            <ListItemText primary='Edit Class' />
-          </ListItem>
-
-          {/* Delete Class */}
-
-          <ListItem button>
-            <ListItemIcon> 
-              <DeleteIcon />
-            </ListItemIcon>
-            <ListItemText primary='Delete Class' />
-          </ListItem>
-    
+          {/* Edit Class */}
+          <Link to='/edit-class'>
+            <ListItem button>
+              <ListItemIcon>
+                <EditIcon />
+              </ListItemIcon>
+              <ListItemText primary='All Class' />
+            </ListItem>
+          </Link>
         </List>
         <Divider />
         <List>

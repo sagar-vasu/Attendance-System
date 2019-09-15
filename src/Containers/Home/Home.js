@@ -1,20 +1,20 @@
 import React from 'react'
-import {DenseAppBar,Paper,Clendar} from '../../Components'
+import { DenseAppBar, Paper, Clendar } from '../../Components'
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 
 
 
-class Dashboard extends React.Component{
-    constructor(){
+class Dashboard extends React.Component {
+    constructor() {
         super()
-        this.state={
-            name:''
+        this.state = {
+            name: ''
         }
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={12} md={6} lg={3}>
@@ -42,7 +42,6 @@ class Dashboard extends React.Component{
                         </Paper>
                     </Grid>
 
-
                     <Grid item xs={12} sm={12} md={12} lg={12}>
                         <Clendar />
                     </Grid>
@@ -55,17 +54,17 @@ class Dashboard extends React.Component{
 }
 
 
-class Home extends React.Component{
+class Home extends React.Component {
 
-    constructor(){
+    constructor() {
         super()
-        this.state={
-            name:''
+        this.state = {
+            name: ''
         }
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <DenseAppBar name="Dashboard" component={<Dashboard />} />
             </div>
