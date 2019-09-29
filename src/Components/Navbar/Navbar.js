@@ -15,13 +15,17 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import PersonIcon from '@material-ui/icons/Person';
+import DeleteIcon from '@material-ui/icons/Delete';
 import ClassIcon from '@material-ui/icons/Class';
-import EditIcon from '@material-ui/icons/Edit';
+import PermContactCalendarIcon from '@material-ui/icons/PermContactCalendar';
 import { Link } from 'react-router-dom'
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
+
+import { logout } from '../../Config/Functions/Functions'
 
 const drawerWidth = 240;
 
@@ -150,7 +154,7 @@ export default function MiniDrawer(props) {
 
           {/* Dashboard */}
           <Link to='/home'>
-            <ListItem button>
+            <ListItem button onClick={() => localStorage.setItem('path', JSON.stringify("/home"))} >
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
@@ -161,20 +165,29 @@ export default function MiniDrawer(props) {
 
           {/* Attendance */}
           <Link to='/attendance'>
-          <ListItem button>
-            <ListItemIcon>
-              <PersonIcon />
-            </ListItemIcon>
-            <ListItemText primary='Attendance' />
-          </ListItem>
-
+            <ListItem button onClick={() => localStorage.setItem('path', JSON.stringify("/attendance"))}>
+              <ListItemIcon>
+                <AssignmentTurnedInIcon />
+              </ListItemIcon>
+              <ListItemText primary='Attendance' />
+            </ListItem>
           </Link>
 
-          
+          {/* late-attendance */}
+          <Link to='/late-attendance'>
+            <ListItem button onClick={() => localStorage.setItem('path', JSON.stringify("/late-attendance"))}>
+              <ListItemIcon>
+                <PermContactCalendarIcon />
+              </ListItemIcon>
+              <ListItemText primary='Late Attendance' />
+            </ListItem>
+          </Link>
+
+
 
           {/* Add Class */}
           <Link to='/add-class'>
-            <ListItem button>
+            <ListItem button onClick={() => localStorage.setItem('path', JSON.stringify("/add-class"))}>
               <ListItemIcon>
                 <ClassIcon />
               </ListItemIcon>
@@ -182,25 +195,64 @@ export default function MiniDrawer(props) {
             </ListItem>
           </Link>
 
-          {/* Edit Class */}
-          <Link to='/edit-class'>
-            <ListItem button>
+          {/* Add Student */}
+          <Link to='/add-student'>
+            <ListItem button onClick={() => localStorage.setItem('path', JSON.stringify("/add-student"))}>
               <ListItemIcon>
-                <EditIcon />
+                <PersonAddIcon />
               </ListItemIcon>
-              <ListItemText primary='All Class' />
+              <ListItemText primary='Add Student' />
             </ListItem>
           </Link>
+
+
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+           {/* Delete Class */}
+           <Link to='/check-status'>
+            <ListItem button onClick={() => localStorage.setItem('path', JSON.stringify("/check-status"))}>
+              <ListItemIcon>
+                <LocalLibraryIcon />
+              </ListItemIcon>
+              <ListItemText primary='Check  Status' />
             </ListItem>
-          ))}
+          </Link>
+
+          
+          {/* Delete Class */}
+          <Link to='/delete-class'>
+            <ListItem button onClick={() => localStorage.setItem('path', JSON.stringify("/delete-class"))}>
+              <ListItemIcon>
+                <DeleteIcon />
+              </ListItemIcon>
+              <ListItemText primary='Delete Class' />
+            </ListItem>
+          </Link>
+
+          {/* Delete Student */}
+          <Link to='/delete-student'>
+            <ListItem button onClick={() => localStorage.setItem('path', JSON.stringify("/delete-student"))}>
+              <ListItemIcon>
+                <DeleteIcon />
+              </ListItemIcon>
+              <ListItemText primary='Delete Student' />
+            </ListItem>
+          </Link>
+
         </List>
+
+
+        {/* User Logout */}
+
+        <ListItem button onClick={() => logout()} >
+          <ListItemIcon>
+            <ExitToAppIcon />
+          </ListItemIcon>
+          <ListItemText primary='Logout' />
+        </ListItem>
+
+
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />

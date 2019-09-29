@@ -17,7 +17,6 @@ export default class Clendar extends React.Component {
 
     componentDidMount() {
         let data = clendar()
-        console.log(data)
         this.setState({
             currentDate: data.date,
             month: data.month,

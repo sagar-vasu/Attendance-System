@@ -1,57 +1,11 @@
-/* Attendance Card */
-
-#card {
-    display: none;
-}
-
-#card_box {
-    width: 500px;
-    display: inline-block;
-}
-
-#form {
-    float: left;
-}
-
-#form input {
-    outline: 0;
-    border-width: 0 0 1px;
-    border-color: #212121;
-    margin-top: 6px;
-    height: 30px;
-    width: 250px;
-}
-
-#form input::-webkit-color-swatch {
-    border: none;
-}
-
-@media screen and (max-width: 780px) {
-    body {
-        margin: 0px auto;
-    }
-    #cc {
-        display: block;
-        width: 100%;
-        margin: 20px auto;
-    }
-    #bc {
-        display: block;
-        width: 100%;
-        margin: 20px auto;
-    }
-    #ai {
-        display: block;
-        width: 100%;
-        margin: 20px auto;
-    }
-}
-
 /* searchbtn */
 
 .searchbtn {
     margin-left: 20%;
+    margin-top: 25px;
 }
+
+/*  */
 
 /* Snack Bar */
 

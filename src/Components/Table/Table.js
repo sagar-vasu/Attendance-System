@@ -1,5 +1,4 @@
 import React from 'react';
-import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import firebaseApp from '../../Config/Firebase/Firebase';
 import Grid from '@material-ui/core/Grid';
@@ -11,7 +10,7 @@ class Table extends React.Component {
     super()
     this.state = {
       allClasses: [],
-      name:'snackbar'
+      name: 'snackbar'
     }
   }
   componentDidMount() {
@@ -19,25 +18,28 @@ class Table extends React.Component {
   }
 
 
-  editClass = (val, i) => {
-    // this.props.path2.history.push('/edit-product', { data: val })
-    alert(i)
-  }
 
 
   deleteClass = (val, i) => {
     let { allClasses } = this.state
+    firebaseApp.firestore().collection(`${val.className}-${val.classSection}`).get().then(res => {
+      res.forEach(doc => {
+        doc.data()
+        firebaseApp.firestore().collection(`${val.className}-${val.classSection}`).doc(doc.id).delete()
+
+      })
+    })
     firebaseApp.firestore().collection('classes').doc(val.id).delete().then(
       allClasses.splice(i, 1)
     )
     this.setState({
-   
-  })
-  setTimeout(()=>{ this.setState({name:'snackbar'}) }, 3000);
+
+    })
+    setTimeout(() => { this.setState({ name: 'snackbar' }) }, 3000);
     this.setState({
       allClasses,
-      name:'show',
-      message :"Class Deleted Succesfully"
+      name: 'show',
+      message: "Class Deleted Succesfully"
     })
   }
 
@@ -47,18 +49,17 @@ class Table extends React.Component {
       <div>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} md={12} sm={11} lg={12} >
+          <Grid item xs={12} md={12} sm={12} lg={12} >
 
-            <table className="table table-hover table-fixed">
+            <table className="table table-bordered table-responsive-md table-striped text-center">
 
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>{this.props.heading[0]}</th>
-                  <th>{this.props.heading[1]}</th>
-                  <th>{this.props.heading[2]}</th>
-                  <th>{this.props.heading[3]}</th>
-                  <th>{this.props.heading[4]}</th>
+                  <th className="text-center">{this.props.heading[0]}</th>
+                  <th className="text-center">{this.props.heading[1]}</th>
+                  <th className="text-center">{this.props.heading[2]}</th>
+                  <th className="text-center">{this.props.heading[4]}</th>
                 </tr>
               </thead>
 
@@ -69,7 +70,6 @@ class Table extends React.Component {
                     <td>{val.className}</td>
                     <td>{val.classSection}</td>
                     <td>{val.classTime}</td>
-                    <td><EditIcon onClick={() => this.editClass(val, ind)} /></td>
                     <td><DeleteIcon onClick={() => this.deleteClass(val, ind)} /></td>
                   </tr>
                 })
@@ -79,7 +79,7 @@ class Table extends React.Component {
               </tbody>
 
             </table>
-            <div id="snackbar"  className={this.state.name}>{this.state.message}</div>
+            <div id="snackbar" className={this.state.name}>{this.state.message}</div>
 
           </Grid>
         </Grid>

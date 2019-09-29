@@ -33,6 +33,8 @@ class EditClass extends React.Component {
     }
 
    async componentDidMount() {
+
+    
         let { allClasses } = this.state
        await firebaseApp.firestore().collection('classes').get().then(res => {
             res.forEach(doc => {
@@ -50,7 +52,7 @@ class EditClass extends React.Component {
     render() {
         return (
             <div>
-                <DenseAppBar name="Edit Class" component={<EditUi data= {this.state.allClasses} />} />
+                <DenseAppBar name="Delete Class" component={<EditUi data= {this.state.allClasses} />} />
             </div>
         )
     }

@@ -21,8 +21,9 @@ class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
-            name:'snackbar',
-            message:''
+            name: 'snackbar',
+            message: '',
+            loader: false
 
         }
     }
@@ -31,23 +32,23 @@ class Login extends React.Component {
 
     Login = async () => {
         let { email, password } = this.state
-        try{
+        try {
             let admin = await LoginUser(email, password)
             firebaseApp.firestore().collection('admin').doc(admin.id).set(admin).then(
                 this.props.history.push('/home')
             )
+            await localStorage.setItem('path', JSON.stringify('/home'))
         }
-        catch(err){
+        catch (err) {
             this.setState({
-                name:'show',
-                message :err
+                name: 'show',
+                message: err
             })
-            setTimeout(()=>{ this.setState({name:'snackbar'}) }, 3000);
+            setTimeout(() => { this.setState({ name: 'snackbar' }) }, 3000);
         }
-
         this.setState({
-            email:'',
-            password:''
+            email: '',
+            password: ''
         })
     }
 
@@ -57,7 +58,9 @@ class Login extends React.Component {
             <div>
                 <MDBNavbar color="unique-color-dark"  >
                     <MDBNavbarBrand href="#">
-                        <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="logo" />
+                        <h5 className="my-3">
+                            <MDBIcon icon="user" />  &nbsp; Attendance Portal
+                        </h5>
                     </MDBNavbarBrand>
                 </MDBNavbar>
                 <div className='login'>
@@ -71,12 +74,10 @@ class Login extends React.Component {
                                                 <MDBIcon icon="user" />  &nbsp;Login
                                             </h3>
                                         </MDBCardHeader>
-
                                         <OutlinedTextFields name='email' value={this.state.email} type='email' label='Email'
-                                        onChange={(e) => this.setState({ email: e.target.value })} />
+                                            onChange={(e) => this.setState({ email: e.target.value })} />
                                         <OutlinedTextFields name='password' value={this.state.password} type='password' label='Password'
-                                        onChange={(e) => this.setState({ password: e.target.value })} />
-
+                                            onChange={(e) => this.setState({ password: e.target.value })} />
                                         <div className="text-center mt-4">
                                             <MDBBtn color="dark" className="mb-3" type="button" onClick={this.Login} >
                                                 Login
@@ -88,12 +89,8 @@ class Login extends React.Component {
                         </MDBRow>
                     </MDBContainer>
                 </div>
-                <div id="snackbar"  className={this.state.name}>{this.state.message}</div>
-
+                <div id="snackbar" className={this.state.name}>{this.state.message}</div>
             </div>
-
-
-
         )
     }
 
